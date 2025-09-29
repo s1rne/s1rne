@@ -8,7 +8,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ArrowRight, Code, Palette, Database, Globe, Heart } from "lucide-react";
 import Link from "next/link";
 import { resumeData } from "@/data/resume-data";
-import InteractiveBackground from "@/components/interactive-background";
 
 export default function Home() {
   const skills = [
@@ -32,7 +31,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-accent/5 relative overflow-hidden">
-      <InteractiveBackground />
 
       {/* Hero Section */}
       <section className="pt-20 sm:pt-24 pb-12 sm:pb-16 px-4 relative z-10">
