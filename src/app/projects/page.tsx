@@ -9,7 +9,21 @@ import { resumeData } from "@/data/resume-data";
 import InteractiveBackground from "@/components/interactive-background";
 
 export default function Projects() {
-  const projects = resumeData.projects.map(project => ({
+  // Уникальные цветовые схемы для каждого проекта
+  const projectGradients = [
+    "from-blue-500/20 via-purple-500/20 to-pink-500/20", // Синий-фиолетовый-розовый
+    "from-emerald-500/20 via-teal-500/20 to-cyan-500/20", // Изумрудный-бирюзовый-голубой
+    "from-orange-500/20 via-red-500/20 to-pink-500/20", // Оранжевый-красный-розовый
+    "from-violet-500/20 via-purple-500/20 to-indigo-500/20", // Фиолетовый-пурпурный-индиго
+    "from-green-500/20 via-lime-500/20 to-yellow-500/20", // Зеленый-лайм-желтый
+    "from-rose-500/20 via-pink-500/20 to-fuchsia-500/20", // Розовый-фуксия
+    "from-sky-500/20 via-blue-500/20 to-indigo-500/20", // Небесный-синий-индиго
+    "from-amber-500/20 via-orange-500/20 to-red-500/20", // Янтарный-оранжевый-красный
+    "from-lime-500/20 via-green-500/20 to-emerald-500/20", // Лайм-зеленый-изумрудный
+    "from-purple-500/20 via-violet-500/20 to-fuchsia-500/20", // Пурпурный-фиолетовый-фуксия
+  ];
+
+  const projects = resumeData.projects.map((project, index) => ({
     title: project.name,
     description: project.description,
     image: `/project${project.id}.jpg`,
@@ -23,7 +37,8 @@ export default function Projects() {
       github: project.links?.github
     },
     impact: project.results,
-    role: project.role
+    role: project.role,
+    gradient: projectGradients[index % projectGradients.length] // Циклическое назначение градиентов
   }));
 
 
@@ -68,20 +83,30 @@ export default function Projects() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               whileHover={{ y: -5 }}
             >
-              <Card className="h-full hover:shadow-lg transition-shadow">
+              <Card className="h-full hover:shadow-lg transition-all duration-300 hover:scale-105 group">
                 <CardHeader className="p-0">
-                  <div className="relative h-40 sm:h-48 bg-gradient-to-br from-primary/20 to-accent/20 rounded-t-lg overflow-hidden">
-                    <div className="absolute inset-0 bg-black/20" />
-                    <div className="absolute top-3 sm:top-4 right-3 sm:right-4 flex flex-col sm:flex-row gap-1 sm:gap-2">
-                      <Badge variant={getStatusColor(project.status)} className="text-xs">
+                  <div className={`relative h-40 sm:h-48 bg-gradient-to-br ${project.gradient} rounded-t-lg overflow-hidden group-hover:scale-105 transition-transform duration-300`}>
+                    {/* Анимированные декоративные элементы */}
+                    <div className="absolute top-4 left-4 w-8 h-8 bg-white/10 rounded-full animate-pulse" />
+                    <div className="absolute top-8 right-8 w-4 h-4 bg-white/10 rounded-full animate-pulse delay-1000" />
+                    <div className="absolute bottom-8 left-8 w-6 h-6 bg-white/10 rounded-full animate-pulse delay-500" />
+                    <div className="absolute bottom-4 right-4 w-3 h-3 bg-white/10 rounded-full animate-pulse delay-1500" />
+                    
+                    {/* Градиентная маска для лучшей читаемости */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                    
+                    <div className="absolute top-3 sm:top-4 right-3 sm:right-4 flex flex-col sm:flex-row gap-1 sm:gap-2 z-10">
+                      <Badge variant={getStatusColor(project.status)} className="text-xs backdrop-blur-sm bg-white/20">
                         {project.status}
                       </Badge>
-                      <Badge variant="outline" className="text-xs">
+                      <Badge variant="outline" className="text-xs backdrop-blur-sm bg-white/20">
                         {project.year}
                       </Badge>
                     </div>
-                    <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4">
-                      <h3 className="text-lg sm:text-xl font-bold text-white mb-2">{project.title}</h3>
+                    <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4 z-10">
+                      <h3 className="text-lg sm:text-xl font-bold text-white mb-2 drop-shadow-lg group-hover:text-white/90 transition-colors">
+                        {project.title}
+                      </h3>
                     </div>
                   </div>
                 </CardHeader>
