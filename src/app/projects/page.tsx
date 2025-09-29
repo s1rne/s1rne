@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, Eye, Code, Globe, Database, Smartphone, Monitor, Cpu, Zap } from "lucide-react";
 import { resumeData } from "@/data/resume-data";
+import Link from "next/link";
 
 export default function Projects() {
   // Уникальные цветовые схемы и иконки для каждого проекта
@@ -156,18 +157,18 @@ export default function Projects() {
                   <div className="flex flex-col sm:flex-row gap-2">
                     {project.links.live && (
                       <Button asChild size="sm" className="flex-1">
-                        <a href={project.links.live} target="_blank" rel="noopener noreferrer">
+                        <Link href={project.links.live} target="_blank" rel="noopener noreferrer">
                           <Eye className="w-4 h-4 mr-2" />
                           Демо
-                        </a>
+                        </Link>
                       </Button>
                     )}
                     {project.links.github && (
                       <Button asChild variant="outline" size="sm" className="flex-1">
-                        <a href={project.links.github} target="_blank" rel="noopener noreferrer">
+                        <Link href={project.links.github} target="_blank" rel="noopener noreferrer">
                           <Github className="w-4 h-4 mr-2" />
                           Код
-                        </a>
+                        </Link>
                       </Button>
                     )}
                   </div>
@@ -191,10 +192,10 @@ export default function Projects() {
                 Готов обсудить новые проекты и возможности. Давайте создадим что-то удивительное вместе!
               </p>
               <Button asChild size="lg" className="w-full sm:w-auto">
-                <a href="/contact">
+                <Link href="/contact">
                   Связаться со мной
                   <ExternalLink className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
-                </a>
+                </Link>
               </Button>
             </CardContent>
           </Card>

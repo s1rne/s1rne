@@ -120,20 +120,9 @@ export default function Home() {
                 className="w-full sm:w-auto"
               >
                 <Button asChild size="lg" className="text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 cursor-pointer w-full sm:w-auto">
-                  <Link href="/resume">
-                    <motion.div
-                      whileHover={{ x: 5 }}
-                      transition={{ duration: 0.2 }}
-                      className="flex items-center justify-center"
-                    >
-                      Посмотреть резюме
-                      <motion.div
-                        whileHover={{ rotate: 360 }}
-                        transition={{ duration: 0.6 }}
-                      >
-                        <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
-                      </motion.div>
-                    </motion.div>
+                  <Link href="/resume" className="flex items-center justify-center">
+                    Посмотреть резюме
+                    <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
                   </Link>
                 </Button>
               </motion.div>
@@ -147,13 +136,8 @@ export default function Home() {
                 className="w-full sm:w-auto"
               >
                 <Button asChild variant="outline" size="lg" className="text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 cursor-pointer w-full sm:w-auto">
-                  <Link href="/contact">
-                    <motion.div
-                      whileHover={{ x: 5 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      Связаться со мной
-                    </motion.div>
+                  <Link href="/contact" className="flex items-center justify-center">
+                    Связаться со мной
                   </Link>
                 </Button>
               </motion.div>
@@ -369,20 +353,9 @@ export default function Home() {
                     whileTap={{ scale: 0.95 }}
                   >
                     <Button asChild size="lg" className="cursor-pointer w-full sm:w-auto">
-                      <Link href="/contact">
-                        <motion.div
-                          whileHover={{ x: 5 }}
-                          transition={{ duration: 0.2 }}
-                          className="flex items-center justify-center"
-                        >
-                          Начать сотрудничество
-                          <motion.div
-                            whileHover={{ rotate: 360 }}
-                            transition={{ duration: 0.6 }}
-                          >
-                            <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
-                          </motion.div>
-                        </motion.div>
+                      <Link href="/contact" className="flex items-center justify-center">
+                        Начать сотрудничество
+                        <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
                       </Link>
                     </Button>
                   </motion.div>
