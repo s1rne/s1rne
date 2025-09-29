@@ -12,7 +12,6 @@ import {
   Phone, 
   MapPin, 
   Github, 
-  Linkedin, 
   Globe,
   Calendar,
   Award,
@@ -20,12 +19,10 @@ import {
   Code,
   Users,
   Target,
-  Star,
-  MessageCircle
+  Star
 } from "lucide-react";
 import { resumeData } from "@/data/resume-data";
 import { downloadResumePDF } from "@/lib/pdf-generator";
-import InteractiveBackground from "@/components/interactive-background";
 
 export default function Resume() {
 

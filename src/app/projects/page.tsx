@@ -1,15 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, Eye } from "lucide-react";
+import { ExternalLink, Github, Eye, Code, Globe, Database, Smartphone, Monitor, Cpu, Zap } from "lucide-react";
 import { resumeData } from "@/data/resume-data";
-import InteractiveBackground from "@/components/interactive-background";
 
 export default function Projects() {
-  // Уникальные цветовые схемы для каждого проекта
+  // Уникальные цветовые схемы и иконки для каждого проекта
   const projectGradients = [
     "from-blue-500/20 via-purple-500/20 to-pink-500/20", // Синий-фиолетовый-розовый
     "from-emerald-500/20 via-teal-500/20 to-cyan-500/20", // Изумрудный-бирюзовый-голубой
@@ -21,6 +20,10 @@ export default function Projects() {
     "from-amber-500/20 via-orange-500/20 to-red-500/20", // Янтарный-оранжевый-красный
     "from-lime-500/20 via-green-500/20 to-emerald-500/20", // Лайм-зеленый-изумрудный
     "from-purple-500/20 via-violet-500/20 to-fuchsia-500/20", // Пурпурный-фиолетовый-фуксия
+  ];
+
+  const projectIcons = [
+    Code, Globe, Database, Smartphone, Monitor, Cpu, Zap, Code, Globe, Database
   ];
 
   const projects = resumeData.projects.map((project, index) => ({
@@ -38,18 +41,19 @@ export default function Projects() {
     },
     impact: project.results,
     role: project.role,
-    gradient: projectGradients[index % projectGradients.length] // Циклическое назначение градиентов
+    gradient: projectGradients[index % projectGradients.length], // Циклическое назначение градиентов
+    icon: projectIcons[index % projectIcons.length] // Циклическое назначение иконок
   }));
 
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case "Завершён":
-        return "default";
+        return "default"; // Зеленый для завершенных
       case "В разработке":
-        return "secondary";
+        return "destructive"; // Оранжевый/красный для в разработке
       case "Планируется":
-        return "outline";
+        return "secondary"; // Серый для планируемых
       default:
         return "default";
     }
@@ -83,28 +87,33 @@ export default function Projects() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               whileHover={{ y: -5 }}
             >
-              <Card className="h-full hover:shadow-lg transition-all duration-300 hover:scale-105 group">
+              <Card className="h-full hover:shadow-xl transition-all duration-300 hover:scale-105 group">
                 <CardHeader className="p-0">
-                  <div className={`relative h-40 sm:h-48 bg-gradient-to-br ${project.gradient} rounded-t-lg overflow-hidden group-hover:scale-105 transition-transform duration-300`}>
-                    {/* Анимированные декоративные элементы */}
-                    <div className="absolute top-4 left-4 w-8 h-8 bg-white/10 rounded-full animate-pulse" />
-                    <div className="absolute top-8 right-8 w-4 h-4 bg-white/10 rounded-full animate-pulse delay-1000" />
-                    <div className="absolute bottom-8 left-8 w-6 h-6 bg-white/10 rounded-full animate-pulse delay-500" />
-                    <div className="absolute bottom-4 right-4 w-3 h-3 bg-white/10 rounded-full animate-pulse delay-1500" />
+                  <div className={`relative h-40 sm:h-48 bg-gradient-to-br ${project.gradient} rounded-t-lg overflow-hidden`}>
+                    {/* Тонкие декоративные элементы */}
+                    <div className="absolute top-4 left-4 w-6 h-6 bg-white/5 rounded-full group-hover:bg-white/10 transition-colors duration-300" />
+                    <div className="absolute top-8 right-8 w-3 h-3 bg-white/5 rounded-full group-hover:bg-white/10 transition-colors duration-300 delay-100" />
+                    <div className="absolute bottom-8 left-8 w-4 h-4 bg-white/5 rounded-full group-hover:bg-white/10 transition-colors duration-300 delay-200" />
+                    <div className="absolute bottom-4 right-4 w-2 h-2 bg-white/5 rounded-full group-hover:bg-white/10 transition-colors duration-300 delay-300" />
+                    
+                    {/* Иконка проекта */}
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-10 group-hover:opacity-20 transition-opacity duration-300">
+                      <project.icon className="w-12 h-12 sm:w-16 sm:h-16 text-white" />
+                    </div>
                     
                     {/* Градиентная маска для лучшей читаемости */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent group-hover:from-black/40 transition-all duration-300" />
                     
                     <div className="absolute top-3 sm:top-4 right-3 sm:right-4 flex flex-col sm:flex-row gap-1 sm:gap-2 z-10">
-                      <Badge variant={getStatusColor(project.status)} className="text-xs backdrop-blur-sm bg-white/20">
+                      <Badge variant={getStatusColor(project.status)} className="text-xs backdrop-blur-sm bg-white/20 group-hover:bg-white/30 transition-colors duration-300">
                         {project.status}
                       </Badge>
-                      <Badge variant="outline" className="text-xs backdrop-blur-sm bg-white/20">
+                      <Badge variant="outline" className="text-xs backdrop-blur-sm bg-white/20 group-hover:bg-white/30 transition-colors duration-300">
                         {project.year}
                       </Badge>
                     </div>
                     <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4 z-10">
-                      <h3 className="text-lg sm:text-xl font-bold text-white mb-2 drop-shadow-lg group-hover:text-white/90 transition-colors">
+                      <h3 className="text-lg sm:text-xl font-bold text-white mb-2 drop-shadow-lg group-hover:drop-shadow-xl transition-all duration-300">
                         {project.title}
                       </h3>
                     </div>

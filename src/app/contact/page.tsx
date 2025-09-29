@@ -11,15 +11,12 @@ import {
   Phone, 
   MapPin, 
   Github, 
-  Linkedin, 
-  Globe,
   Send,
-  MessageCircle,
   Clock,
-  CheckCircle
+  CheckCircle,
+  MessageCircle
 } from "lucide-react";
 import { resumeData } from "@/data/resume-data";
-import InteractiveBackground from "@/components/interactive-background";
 
 export default function Contact() {
   const contactInfo = [

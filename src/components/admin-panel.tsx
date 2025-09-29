@@ -5,13 +5,40 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Badge } from "@/components/ui/badge";
 import { Plus, Save, X } from "lucide-react";
 import { motion } from "framer-motion";
 
+interface ProjectData {
+  id: string;
+  name: string;
+  description: string;
+  technologies: string[];
+  role: string;
+  results: string;
+  status: 'completed' | 'in-progress' | 'planned';
+  links: {
+    demo?: string;
+    github?: string;
+    website?: string;
+  };
+  featured: boolean;
+}
+
+interface ExperienceData {
+  id: string;
+  title: string;
+  company: string;
+  period: string;
+  description: string;
+  responsibilities: string[];
+  achievements: string[];
+  technologies: string[];
+  current: boolean;
+}
+
 interface AdminPanelProps {
-  onAddProject?: (project: any) => void;
-  onAddExperience?: (experience: any) => void;
+  onAddProject?: (project: ProjectData) => void;
+  onAddExperience?: (experience: ExperienceData) => void;
 }
 
 export default function AdminPanel({ onAddProject, onAddExperience }: AdminPanelProps) {
@@ -207,7 +234,7 @@ export default function AdminPanel({ onAddProject, onAddExperience }: AdminPanel
                           key={status}
                           variant={projectForm.status === status ? 'default' : 'outline'}
                           size="sm"
-                          onClick={() => setProjectForm({...projectForm, status: status as any})}
+                          onClick={() => setProjectForm({...projectForm, status: status as 'completed' | 'in-progress' | 'planned'})}
                         >
                           {status === 'completed' ? 'Завершён' : 
                            status === 'in-progress' ? 'В разработке' : 'Планируется'}
