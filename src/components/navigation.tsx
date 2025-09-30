@@ -16,8 +16,7 @@ const navItems = [
 ];
 
 const socialLinks = [
-  { href: "https://github.com", label: "GitHub", icon: Github },
-  { href: "https://linkedin.com", label: "LinkedIn", icon: Linkedin },
+  { href: "https://github.com/s1rne", label: "GitHub", icon: Github },
 ];
 
 export default function Navigation() {

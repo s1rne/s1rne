@@ -6,15 +6,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Github, 
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Github,
   Send,
   Clock,
   CheckCircle,
-  MessageCircle
+  MessageCircle,
 } from "lucide-react";
 import { resumeData } from "@/data/resume-data";
 
@@ -24,32 +24,43 @@ export default function Contact() {
       icon: Mail,
       title: "Email",
       value: resumeData.personal.email,
-      link: `mailto:${resumeData.personal.email}`
+      link: `mailto:${resumeData.personal.email}`,
     },
     {
       icon: Phone,
       title: "Телефон",
       value: resumeData.personal.phone,
-      link: `tel:${resumeData.personal.phone.replace(/[^0-9+]/g, '')}`
+      link: `tel:${resumeData.personal.phone.replace(/[^0-9+]/g, "")}`,
     },
     {
       icon: MapPin,
       title: "Локация",
       value: resumeData.personal.location,
-      link: null
+      link: null,
     },
-    ...(resumeData.personal.github ? [{
-      icon: Github,
-      title: "GitHub",
-      value: resumeData.personal.github,
-      link: `https://${resumeData.personal.github}`
-    }] : []),
-    ...(resumeData.personal.telegram ? [{
-      icon: MessageCircle,
-      title: "Telegram",
-      value: resumeData.personal.telegram,
-      link: `https://t.me/${resumeData.personal.telegram.replace('@', '')}`
-    }] : [])
+    ...(resumeData.personal.github
+      ? [
+          {
+            icon: Github,
+            title: "GitHub",
+            value: resumeData.personal.github,
+            link: `https://${resumeData.personal.github}`,
+          },
+        ]
+      : []),
+    ...(resumeData.personal.telegram
+      ? [
+          {
+            icon: MessageCircle,
+            title: "Telegram",
+            value: resumeData.personal.telegram,
+            link: `https://t.me/${resumeData.personal.telegram.replace(
+              "@",
+              ""
+            )}`,
+          },
+        ]
+      : []),
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -72,7 +83,8 @@ export default function Contact() {
             Свяжитесь со мной
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
-            Готов обсудить новые проекты, возможности сотрудничества или просто поболтать о технологиях
+            Готов обсудить новые проекты, возможности сотрудничества или просто
+            поболтать о технологиях
           </p>
         </motion.div>
 
@@ -91,7 +103,10 @@ export default function Contact() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                <form
+                  onSubmit={handleSubmit}
+                  className="space-y-4 sm:space-y-6"
+                >
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="name">Имя *</Label>
@@ -113,7 +128,7 @@ export default function Contact() {
                       />
                     </div>
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="subject">Тема</Label>
                     <Input
@@ -122,7 +137,7 @@ export default function Contact() {
                       placeholder="Тема сообщения"
                     />
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="message">Сообщение *</Label>
                     <Textarea
@@ -133,7 +148,7 @@ export default function Contact() {
                       required
                     />
                   </div>
-                  
+
                   <Button type="submit" size="lg" className="w-full">
                     <Send className="w-4 h-4 mr-2" />
                     Отправить сообщение
@@ -144,12 +159,12 @@ export default function Contact() {
           </motion.div>
 
           {/* Contact Info */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="space-y-6 sm:space-y-8"
-            >
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="space-y-6 sm:space-y-8"
+          >
             {/* Contact Details */}
             <Card>
               <CardHeader>
@@ -179,7 +194,9 @@ export default function Contact() {
                             {contact.value}
                           </a>
                         ) : (
-                          <p className="text-muted-foreground">{contact.value}</p>
+                          <p className="text-muted-foreground">
+                            {contact.value}
+                          </p>
                         )}
                       </div>
                     </motion.div>
@@ -202,14 +219,16 @@ export default function Contact() {
                     <CheckCircle className="w-5 h-5 text-green-500" />
                     <div>
                       <p className="font-medium">Обычно отвечаю в течение</p>
-                      <p className="text-muted-foreground">24 часов</p>
+                      <p className="text-muted-foreground">2 часов</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-green-500" />
                     <div>
                       <p className="font-medium">Рабочие дни</p>
-                      <p className="text-muted-foreground">Пн-Пт, 9:00-18:00 МСК</p>
+                      <p className="text-muted-foreground">
+                        Всегда :{")"}, 7:00-23:00 МСК
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
@@ -231,16 +250,35 @@ export default function Contact() {
               <CardContent>
                 <div className="flex flex-col sm:flex-row gap-3">
                   {resumeData.personal.github && (
-                    <Button asChild variant="outline" className="w-full sm:w-auto">
-                      <a href={`https://${resumeData.personal.github}`} target="_blank" rel="noopener noreferrer">
+                    <Button
+                      asChild
+                      variant="outline"
+                      className="w-full sm:w-auto"
+                    >
+                      <a
+                        href={`https://${resumeData.personal.github}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <Github className="w-4 h-4 mr-2" />
                         GitHub
                       </a>
                     </Button>
                   )}
                   {resumeData.personal.telegram && (
-                    <Button asChild variant="outline" className="w-full sm:w-auto">
-                      <a href={`https://t.me/${resumeData.personal.telegram.replace('@', '')}`} target="_blank" rel="noopener noreferrer">
+                    <Button
+                      asChild
+                      variant="outline"
+                      className="w-full sm:w-auto"
+                    >
+                      <a
+                        href={`https://t.me/${resumeData.personal.telegram.replace(
+                          "@",
+                          ""
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <MessageCircle className="w-4 h-4 mr-2" />
                         Telegram
                       </a>
@@ -261,21 +299,25 @@ export default function Contact() {
         >
           <Card className="bg-gradient-to-r from-primary/10 to-accent/10 border-primary/20">
             <CardContent className="p-6 sm:p-8">
-              <h3 className="text-xl sm:text-2xl font-bold mb-4">Готов к новым вызовам!</h3>
+              <h3 className="text-xl sm:text-2xl font-bold mb-4">
+                Готов к новым вызовам!
+              </h3>
               <p className="text-muted-foreground mb-6 max-w-2xl mx-auto text-sm sm:text-base">
-                Ищу интересные проекты, возможности для профессионального роста и команду единомышленников. 
-                Давайте создадим что-то удивительное вместе!
+                Ищу интересные проекты, возможности для профессионального роста
+                и команду единомышленников. Давайте создадим что-то удивительное
+                вместе!
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild size="lg" className="w-full sm:w-auto">
-                  <a href="/resume">
-                    Посмотреть резюме
-                  </a>
+                  <a href="/resume">Посмотреть резюме</a>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
-                  <a href="/projects">
-                    Мои проекты
-                  </a>
+                <Button
+                  asChild
+                  variant="outline"
+                  size="lg"
+                  className="w-full sm:w-auto"
+                >
+                  <a href="/projects">Мои проекты</a>
                 </Button>
               </div>
             </CardContent>

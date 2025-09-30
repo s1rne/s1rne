@@ -100,7 +100,7 @@ export default function Home() {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mb-6 sm:mb-8 max-w-3xl mx-auto px-4"
             >
-              Творческий разработчик с 4+ годами проектной и коммерческой работой. 
+              Разработчик с 4+ годами проектной и коммерческой работы. 
               Специализируюсь на React, Node.js, Python и инструментах DevOps
             </motion.p>
             
